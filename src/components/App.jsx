@@ -1,29 +1,39 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import { ImageGallery } from './ImageGallery/ImageGallery';
 import { AppStyle } from './App.styled';
 import { Searchbar } from './Searchbar/Searchbar';
-// import { Button } from '../components/Button/Button';
-// import { useEffect } from 'react';
 
-export class App extends Component {
-  state = {
-    query: '',
-  };
-  setQuery = query => {
-    this.setState({ query });
-  };
+export const App = () => {
+  const [query, setQuery] = useState('');
 
-  // useEffect(() => {
-  //   getImagesApi('cat', 1).then(res => console.log(res.data.hits));
-  // }, []);
+  return (
+    <AppStyle className={App}>
+      <Searchbar setQuery={setQuery} />
 
-  render() {
-    return (
-      <AppStyle className={App}>
-        <Searchbar setQuery={this.setQuery} />
+      <ImageGallery query={query} />
+    </AppStyle>
+  );
+};
 
-        <ImageGallery query={this.state.query} />
-      </AppStyle>
-    );
-  }
-}
+// export class App extends Component {
+//   state = {
+//     query: '',
+//   };
+//   setQuery = query => {
+//     this.setState({ query });
+//   };
+
+//   // useEffect(() => {
+//   //   getImagesApi('cat', 1).then(res => console.log(res.data.hits));
+//   // }, []);
+
+//   render() {
+//     return (
+//       <AppStyle className={App}>
+//         <Searchbar setQuery={this.setQuery} />
+
+//         <ImageGallery query={this.state.query} />
+//       </AppStyle>
+//     );
+//   }
+// }
